@@ -14,6 +14,7 @@ angular.module('RadioFrequencies')
       $scope.page = 0;
       $scope.user = { 'username' : '' };
       $scope.loggedIn = false;
+      $scope.loginRedirect = '/';
 
       $scope.$on('$routeChangeStart', function(next, current) {
 
@@ -31,6 +32,8 @@ angular.module('RadioFrequencies')
       });
 
       $scope.requireLogin = function(loggedInCallback, loggedOutCallback) {
+         $scope.loginRedirect = $location.path();
+
          if (!radioReference.loggedIn(loggedInCallback, loggedOutCallback)) {
             $location.path('/login');
          }

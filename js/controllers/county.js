@@ -8,6 +8,7 @@ angular.module('RadioFrequencies')
 
          radioReference.county($routeParams.ctid).then(function(response) {
             $scope.county = response.data;
+            console.log($scope.county);
             $scope.contentLoaded(true);
 
             $scope.$parent.county.name = $scope.county.countyName;

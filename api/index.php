@@ -137,6 +137,11 @@ switch($request)
       echo json_encode($response);
       break;
 
+   case 'mode':
+      $mid = (int)get_required_param('mid');
+      echo json_encode($rr->getMode($mid));
+      break;
+
    default:
       header('HTTP/1.0 400 Bad Request');
       die();

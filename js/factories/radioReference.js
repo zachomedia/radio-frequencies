@@ -24,6 +24,7 @@ angular.module('RadioFrequencies')
          subcats: {
             frequencies: Array()
          },
+         modes: Array(),
          system: {
             info : Array(),
             sites: Array(),
@@ -126,6 +127,18 @@ angular.module('RadioFrequencies')
          subcatFrequencies: function(scid) {
             if (!cache.subcats.frequencies[scid]) {
                cache.subcats.frequencies[scid] = this.request('subcatFrequencies', { scid: scid });
+
+               cache.subcats.frequencies[scid].then(function(freqs) {
+                  for (var iii = 0; iii < freqs.data.length; ++iii) {
+                     (function(_this, freq) {
+                        _this.mode(freq.mode).then(function(mode) {
+                           if (mode.data.length > 0) {
+                              freq.mode = mode.data[0];
+                           }
+                        });
+                     })(radioReference, freqs.data[iii]);
+                  }
+               });
             }
 
             return cache.subcats.frequencies[scid];
@@ -225,8 +238,16 @@ angular.module('RadioFrequencies')
             return cache.agency.info[aid];
          },
 
+         mode: function(mid) {
+            if (!cache.modes[mid]) {
+               cache.modes[mid] = this.request('mode', { mid: mid });
+            }
+
+            return cache.modes[mid];
+         },
+
          user: function() {
-            if (!cache.user[user.username]) {
+            if (!cache.user[user.username] || !user.loggedIn) {
                cache.user[user.username] = this.request('user');
             }
 

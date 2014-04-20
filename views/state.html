@@ -1,0 +1,46 @@
+<h1> {{ state.stateName }} </h1>
+
+<tabset>
+   <tab heading="Counties">
+      <div class="container-fluid">
+         <h3>Counties</h3>
+         <input type="search" class="form-control" ng-model="county_search" placeholder="Search..." />
+         <br />
+         <div class="list-group">
+            <div class="list-group-item" ng-repeat="county in state.countyList | filter:county_search | orderBy:'countyName'">
+               <a href="#/county/{{county.ctid}}">
+                  {{ county.countyName }}
+               </a>
+            </div>
+         </div>
+      </div>
+   </tab>
+   <tab heading="Agencies">
+      <div class="container-fluid">
+         <h3>Agencies</h3>
+         <input type="search" class="form-control" ng-model="agencies_search" placeholder="Search..." />
+         <br />
+         <div class="list-group">
+            <div class="list-group-item" ng-repeat="agency in state.agencyList | filter:agencies_search | orderBy:'aName'">
+               <a href="#/agency/{{agency.aid}}">
+                  {{ agency.aName }}
+               </a>
+            </div>
+         </div>
+      </div>
+   </tab>
+   <tab heading="Trunked Radio Systems">
+      <div class="container-fluid">
+         <h3>Trunked Radio Systems</h3>
+         <input type="search" class="form-control" ng-model="trs_search" placeholder="Search..." />
+         <br />
+         <div class="list-group">
+            <div class="list-group-item" ng-repeat="trs in state.trsList | filter:trs_search | orderBy:'sName'">
+               <a href="#/system/{{trs.sid}}">
+                  {{ trs.sName }}
+               </a>
+            </div>
+         </div>
+      </div>
+   </tab>
+</tabset>

@@ -1,0 +1,16 @@
+
+<h1>Countries</h1>
+
+<p>To begin, select a country.</p>
+
+<input type="search" class="form-control" ng-model="search" placeholder="Search..." />
+
+<br />
+
+<div class="list-group">
+   <div class="list-group-item" ng-repeat="country in countries | filter:search">
+      <a href="#/country/{{country.coid}}">
+         {{ country.countryCode }} - {{ country.countryName }}
+      </a>
+   </div>
+</div>

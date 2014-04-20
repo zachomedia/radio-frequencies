@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+<p>To use this application, you must be a premium subscriber to <a href="http://www.radioreference.com/">radioreference.com</a>.</p>
+<p>If you are a premium subscriber, enter your Radio Reference credentials to continue.</p>
+
+<form id="loginForm" name="loginForm" class="form" ng-submit="login()" novalidate>
+   <div class="form-group">
+      <label for="username">Username</label>
+      <input type="username" class="form-control" id="username" name="username" placeholder="ex. john" ng-model="user.username" autofocus required />
+   </div>
+   <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="ex. Smith102" ng-model="user.password" autofocus required />
+   </div>
+
+   <button class="btn btn-default btn-primary" ng-disabled="loginForm.$invalid">Login</button>
+</form>

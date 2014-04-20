@@ -1,0 +1,33 @@
+
+<h1> {{ country.countryName }} ({{country.countryCode}})</h1>
+
+<tabset>
+   <tab heading="States/Provinces">
+      <div class="container-fluid">
+         <h3>States/Provinces</h3>
+         <input type="search" class="form-control" ng-model="state_search" placeholder="Search..." />
+         <br />
+         <div class="list-group">
+            <div class="list-group-item" ng-repeat="state in country.stateList | filter:state_search | orderBy:'stateName'">
+               <a href="#/state/{{state.stid}}">
+                  {{ state.stateCode }} - {{ state.stateName }}
+               </a>
+            </div>
+         </div>
+      </div>
+   </tab>
+   <tab heading="Agencies">
+      <div class="container-fluid">
+         <h3>Agencies</h3>
+         <input type="search" class="form-control" ng-model="agencies_search" placeholder="Search..." />
+         <br />
+         <div class="list-group">
+            <div class="list-group-item" ng-repeat="agency in country.agencyList | filter:agencies_search | orderBy:'aName'">
+               <a href="#/agency/{{agency.aid}}">
+                  {{ agency.aName }}
+               </a>
+            </div>
+         </div>
+      </div>
+   </tab>
+</tabset>

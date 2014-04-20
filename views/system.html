@@ -1,0 +1,52 @@
+<h1>{{ system.sName }}</h1>
+
+<tabset>
+   <tab heading="Sites">
+      <div class="container-fluid">
+         <h3>Sites</h3>
+
+         <input type="search" class="form-control" ng-model="site_search" placeholder="Search..." />
+         <br />
+
+         <div class="panel panel-default" ng-repeat="site in system.sites | filter:site_search">
+            <div class="panel-heading">
+               <h3 class="panel-title">{{ site.siteDescr }}</h3>
+            </div>
+            <div class="panel-body">
+               <span ng-repeat="freq in site.siteFreqs">{{freq.freq | number:4}}{{ ($last) ? '' : ', ' }}</span>
+            </div>
+         </div>
+      </div>
+   </tab>
+   <tab heading="Talkgroups">
+      <div class="container-fluid">
+         <h3>Talkgroups</h3>
+
+         <input type="search" class="form-control" ng-model="talkgroup_search" placeholder="Search..." />
+         <br />
+
+         <accordion close-others="false">
+            <accordion-group heading="{{tgCat.tgCname}}" ng-repeat="tgCat in system.talkgroupCategories | filter:talkgroup_search | orderBy:'tgSort' "  is-open="true">
+               <table class="table table-striped">
+                  <thead>
+                     <tr>
+                        <th width="5%">ID</th>
+                        <th width="20%">Alpha</th>
+                        <th width="65%">Description</th>
+                        <th width="5%">Mode</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="tg in tgCat.talkgroups | filter:talkgroup_search | orderBy:'tgDec' ">
+                        <td>{{tg.tgDec}}</td>
+                        <td>{{tg.tgAlpha}}</td>
+                        <td>{{tg.tgDescr}}</td>
+                        <td>{{tg.tgMode}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </accordion-group>
+         </accordion>
+      </div>
+   </tab>
+</tabset>

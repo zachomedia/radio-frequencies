@@ -1,0 +1,35 @@
+<h1>{{ agency.agencyName }}</h1>
+
+<tabset>
+   <tab heading="Categories">
+      <div class="container-fluid">
+         <h3>Categories</h3>
+         <input type="search" class="form-control" ng-model="categories_search" placeholder="Search..." />
+         <br />
+
+         <accordion close-others="false">
+            <accordion-group heading="{{cat.cName}}" ng-repeat="cat in agency.cats | filter:categories_search"  is-open="true">
+               <accordion close-others="false">
+                  <accordion-group heading="{{subcat.scName}}" ng-repeat="subcat in cat.subcats | filter:categories_search" is-open="true">
+
+                     <table class="table">
+                        <thead>
+                           <th width="10%">Frequency</th>
+                           <th width="90%">Description</th>
+                        </thead>
+                        <tbody>
+                           <tr ng-repeat="freq in subcat.frequencies | orderBy:'sort'">
+                              <td>{{ freq.out | number:4 }}</td>
+                              <td>{{ freq.descr }}</td>
+                           </tr>
+                        </tbody>
+                     </table>
+
+                  </accordion-group>
+               </accordion>
+            </accordion-group>
+
+         </accordion>
+      </div>
+   </tab>
+</tabset>

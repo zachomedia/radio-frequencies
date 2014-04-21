@@ -20,7 +20,7 @@
                            <th width="10%">Mode</th>
                         </thead>
                         <tbody>
-                           <tr ng-repeat="freq in subcat.frequencies | orderBy:'sort'">
+                           <tr ng-repeat="freq in subcat.frequencies | filter:categories_search | orderBy:'sort'">
                               <td>{{ freq.out | number:4 }}</td>
                               <td>{{ freq.descr }}</td>
                               <td>{{ freq.mode.modeName }}</td>
